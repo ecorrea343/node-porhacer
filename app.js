@@ -12,11 +12,31 @@ switch (comando) {
         console.log(tarea);
         break;
     case 'actualizar':
-        console.log('Actualizacion por hacer'.blue);
+
+        let actualizado = porHacer.actualizar(argv.descripcion, argv.completado)
+        console.log(actualizado);
+        break;
+    case 'borrar':
+        let borrado = porHacer.borrar(argv.descripcion);
+        console.log(borrado);
         break;
     case 'listar':
-        console.log('lista los elementos'.magenta);
+        //console.log('lista los elementos'.magenta);
+        let listado = porHacer.getListado();
+
+        for (let tarea of listado) {
+
+            //console.table(listado);
+            console.log('=============Por HACER=========='.green);
+            console.log('Descripcion : ', tarea.descripcion);
+            console.log('Estado      : ', tarea.completado);
+            console.log('================================'.green);
+        }
+
         break;
+
     default:
         console.log('Comando no reconocido'.bgRed);
+
+
 }
